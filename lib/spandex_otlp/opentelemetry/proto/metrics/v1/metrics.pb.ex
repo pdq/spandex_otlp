@@ -1,12 +1,6 @@
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality do
   @moduledoc false
-  use Protobuf, enum: true, syntax: :proto3
-
-  @type t ::
-          integer
-          | :AGGREGATION_TEMPORALITY_UNSPECIFIED
-          | :AGGREGATION_TEMPORALITY_DELTA
-          | :AGGREGATION_TEMPORALITY_CUMULATIVE
+  use Protobuf, enum: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:AGGREGATION_TEMPORALITY_UNSPECIFIED, 0)
   field(:AGGREGATION_TEMPORALITY_DELTA, 1)
@@ -15,58 +9,35 @@ end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.ResourceMetrics do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          resource: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource.t() | nil,
-          instrumentation_library_metrics: [
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics.t()
-          ],
-          schema_url: String.t()
-        }
-  defstruct [:resource, :instrumentation_library_metrics, :schema_url]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:resource, 1, type: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource)
 
   field(:instrumentation_library_metrics, 2,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics,
+    json_name: "instrumentationLibraryMetrics"
   )
 
-  field(:schema_url, 3, type: :string)
+  field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          instrumentation_library:
-            SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary.t() | nil,
-          metrics: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric.t()],
-          schema_url: String.t()
-        }
-  defstruct [:instrumentation_library, :metrics, :schema_url]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:instrumentation_library, 1,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary
+    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary,
+    json_name: "instrumentationLibrary"
   )
 
   field(:metrics, 2, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric)
-  field(:schema_url, 3, type: :string)
+  field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data: {atom, any},
-          name: String.t(),
-          description: String.t(),
-          unit: String.t()
-        }
-  defstruct [:data, :name, :description, :unit]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:data, 0)
 
@@ -76,24 +47,27 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric do
 
   field(:int_gauge, 4,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntGauge,
-    deprecated: true,
-    oneof: 0
+    json_name: "intGauge",
+    oneof: 0,
+    deprecated: true
   )
 
   field(:gauge, 5, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Gauge, oneof: 0)
 
   field(:int_sum, 6,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntSum,
-    deprecated: true,
-    oneof: 0
+    json_name: "intSum",
+    oneof: 0,
+    deprecated: true
   )
 
   field(:sum, 7, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Sum, oneof: 0)
 
   field(:int_histogram, 8,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogram,
-    deprecated: true,
-    oneof: 0
+    json_name: "intHistogram",
+    oneof: 0,
+    deprecated: true
   )
 
   field(:histogram, 9, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Histogram, oneof: 0)
@@ -102,160 +76,117 @@ end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntGauge do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint.t()]
-        }
-  defstruct [:data_points]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint,
+    json_name: "dataPoints"
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Gauge do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint.t()]
-        }
-  defstruct [:data_points]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
+    json_name: "dataPoints"
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntSum do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint.t()],
-          aggregation_temporality:
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality.t(),
-          is_monotonic: boolean
-        }
-  defstruct [:data_points, :aggregation_temporality, :is_monotonic]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint,
+    json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    json_name: "aggregationTemporality",
     enum: true
   )
 
-  field(:is_monotonic, 3, type: :bool)
+  field(:is_monotonic, 3, type: :bool, json_name: "isMonotonic")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Sum do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint.t()],
-          aggregation_temporality:
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality.t(),
-          is_monotonic: boolean
-        }
-  defstruct [:data_points, :aggregation_temporality, :is_monotonic]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
+    json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    json_name: "aggregationTemporality",
     enum: true
   )
 
-  field(:is_monotonic, 3, type: :bool)
+  field(:is_monotonic, 3, type: :bool, json_name: "isMonotonic")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogram do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint.t()],
-          aggregation_temporality:
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality.t()
-        }
-  defstruct [:data_points, :aggregation_temporality]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint,
+    json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    json_name: "aggregationTemporality",
     enum: true
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Histogram do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint.t()],
-          aggregation_temporality:
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality.t()
-        }
-  defstruct [:data_points, :aggregation_temporality]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint,
+    json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    json_name: "aggregationTemporality",
     enum: true
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Summary do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data_points: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.t()]
-        }
-  defstruct [:data_points]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint,
+    json_name: "dataPoints"
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          start_time_unix_nano: non_neg_integer,
-          time_unix_nano: non_neg_integer,
-          value: integer,
-          exemplars: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar.t()]
-        }
-  defstruct [:labels, :start_time_unix_nano, :time_unix_nano, :value, :exemplars]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:labels, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue)
 
-  field(:start_time_unix_nano, 2, type: :fixed64)
-  field(:time_unix_nano, 3, type: :fixed64)
+  field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
+  field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:value, 4, type: :sfixed64)
 
   field(:exemplars, 5,
@@ -266,17 +197,7 @@ end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          value: {atom, any},
-          attributes: [SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue.t()],
-          labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          start_time_unix_nano: non_neg_integer,
-          time_unix_nano: non_neg_integer,
-          exemplars: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar.t()]
-        }
-  defstruct [:value, :attributes, :labels, :start_time_unix_nano, :time_unix_nano, :exemplars]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:value, 0)
 
@@ -288,46 +209,25 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint do
     deprecated: true
   )
 
-  field(:start_time_unix_nano, 2, type: :fixed64)
-  field(:time_unix_nano, 3, type: :fixed64)
-  field(:as_double, 4, type: :double, oneof: 0)
-  field(:as_int, 6, type: :sfixed64, oneof: 0)
+  field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
+  field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
+  field(:as_double, 4, type: :double, json_name: "asDouble", oneof: 0)
+  field(:as_int, 6, type: :sfixed64, json_name: "asInt", oneof: 0)
   field(:exemplars, 5, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar)
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          start_time_unix_nano: non_neg_integer,
-          time_unix_nano: non_neg_integer,
-          count: non_neg_integer,
-          sum: integer,
-          bucket_counts: [non_neg_integer],
-          explicit_bounds: [float | :infinity | :negative_infinity | :nan],
-          exemplars: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar.t()]
-        }
-  defstruct [
-    :labels,
-    :start_time_unix_nano,
-    :time_unix_nano,
-    :count,
-    :sum,
-    :bucket_counts,
-    :explicit_bounds,
-    :exemplars
-  ]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:labels, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue)
 
-  field(:start_time_unix_nano, 2, type: :fixed64)
-  field(:time_unix_nano, 3, type: :fixed64)
+  field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
+  field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:count, 4, type: :fixed64)
   field(:sum, 5, type: :sfixed64)
-  field(:bucket_counts, 6, repeated: true, type: :fixed64)
-  field(:explicit_bounds, 7, repeated: true, type: :double)
+  field(:bucket_counts, 6, repeated: true, type: :fixed64, json_name: "bucketCounts")
+  field(:explicit_bounds, 7, repeated: true, type: :double, json_name: "explicitBounds")
 
   field(:exemplars, 8,
     repeated: true,
@@ -337,30 +237,7 @@ end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          attributes: [SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue.t()],
-          labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          start_time_unix_nano: non_neg_integer,
-          time_unix_nano: non_neg_integer,
-          count: non_neg_integer,
-          sum: float | :infinity | :negative_infinity | :nan,
-          bucket_counts: [non_neg_integer],
-          explicit_bounds: [float | :infinity | :negative_infinity | :nan],
-          exemplars: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar.t()]
-        }
-  defstruct [
-    :attributes,
-    :labels,
-    :start_time_unix_nano,
-    :time_unix_nano,
-    :count,
-    :sum,
-    :bucket_counts,
-    :explicit_bounds,
-    :exemplars
-  ]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:attributes, 9, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
 
@@ -370,24 +247,18 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint do
     deprecated: true
   )
 
-  field(:start_time_unix_nano, 2, type: :fixed64)
-  field(:time_unix_nano, 3, type: :fixed64)
+  field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
+  field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:count, 4, type: :fixed64)
   field(:sum, 5, type: :double)
-  field(:bucket_counts, 6, repeated: true, type: :fixed64)
-  field(:explicit_bounds, 7, repeated: true, type: :double)
+  field(:bucket_counts, 6, repeated: true, type: :fixed64, json_name: "bucketCounts")
+  field(:explicit_bounds, 7, repeated: true, type: :double, json_name: "explicitBounds")
   field(:exemplars, 8, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar)
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          quantile: float | :infinity | :negative_infinity | :nan,
-          value: float | :infinity | :negative_infinity | :nan
-        }
-  defstruct [:quantile, :value]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:quantile, 1, type: :double)
   field(:value, 2, type: :double)
@@ -395,28 +266,7 @@ end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          attributes: [SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue.t()],
-          labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          start_time_unix_nano: non_neg_integer,
-          time_unix_nano: non_neg_integer,
-          count: non_neg_integer,
-          sum: float | :infinity | :negative_infinity | :nan,
-          quantile_values: [
-            SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile.t()
-          ]
-        }
-  defstruct [
-    :attributes,
-    :labels,
-    :start_time_unix_nano,
-    :time_unix_nano,
-    :count,
-    :sum,
-    :quantile_values
-  ]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:attributes, 7, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
 
@@ -426,71 +276,56 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint do
     deprecated: true
   )
 
-  field(:start_time_unix_nano, 2, type: :fixed64)
-  field(:time_unix_nano, 3, type: :fixed64)
+  field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
+  field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:count, 4, type: :fixed64)
   field(:sum, 5, type: :double)
 
   field(:quantile_values, 6,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile,
+    json_name: "quantileValues"
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar do
   @moduledoc false
-  use Protobuf, deprecated: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          filtered_labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          time_unix_nano: non_neg_integer,
-          value: integer,
-          span_id: binary,
-          trace_id: binary
-        }
-  defstruct [:filtered_labels, :time_unix_nano, :value, :span_id, :trace_id]
+  use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:filtered_labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue
+    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    json_name: "filteredLabels"
   )
 
-  field(:time_unix_nano, 2, type: :fixed64)
+  field(:time_unix_nano, 2, type: :fixed64, json_name: "timeUnixNano")
   field(:value, 3, type: :sfixed64)
-  field(:span_id, 4, type: :bytes)
-  field(:trace_id, 5, type: :bytes)
+  field(:span_id, 4, type: :bytes, json_name: "spanId")
+  field(:trace_id, 5, type: :bytes, json_name: "traceId")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          value: {atom, any},
-          filtered_attributes: [SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue.t()],
-          filtered_labels: [SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue.t()],
-          time_unix_nano: non_neg_integer,
-          span_id: binary,
-          trace_id: binary
-        }
-  defstruct [:value, :filtered_attributes, :filtered_labels, :time_unix_nano, :span_id, :trace_id]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:value, 0)
 
   field(:filtered_attributes, 7,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue
+    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue,
+    json_name: "filteredAttributes"
   )
 
   field(:filtered_labels, 1,
     repeated: true,
     type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    json_name: "filteredLabels",
     deprecated: true
   )
 
-  field(:time_unix_nano, 2, type: :fixed64)
-  field(:as_double, 3, type: :double, oneof: 0)
-  field(:as_int, 6, type: :sfixed64, oneof: 0)
-  field(:span_id, 4, type: :bytes)
-  field(:trace_id, 5, type: :bytes)
+  field(:time_unix_nano, 2, type: :fixed64, json_name: "timeUnixNano")
+  field(:as_double, 3, type: :double, json_name: "asDouble", oneof: 0)
+  field(:as_int, 6, type: :sfixed64, json_name: "asInt", oneof: 0)
+  field(:span_id, 4, type: :bytes, json_name: "spanId")
+  field(:trace_id, 5, type: :bytes, json_name: "traceId")
 end

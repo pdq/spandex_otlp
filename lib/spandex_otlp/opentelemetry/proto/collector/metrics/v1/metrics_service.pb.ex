@@ -1,29 +1,24 @@
 defmodule SpandexOTLP.Opentelemetry.Proto.Collector.Metrics.V1.ExportMetricsServiceRequest do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          resource_metrics: [SpandexOTLP.Opentelemetry.Proto.Metrics.V1.ResourceMetrics.t()]
-        }
-  defstruct [:resource_metrics]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:resource_metrics, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.ResourceMetrics
+    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.ResourceMetrics,
+    json_name: "resourceMetrics"
   )
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Collector.Metrics.V1.ExportMetricsServiceResponse do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{}
-  defstruct []
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Collector.Metrics.V1.MetricsService.Service do
   @moduledoc false
-  use GRPC.Service, name: "opentelemetry.proto.collector.metrics.v1.MetricsService"
+  use GRPC.Service,
+    name: "opentelemetry.proto.collector.metrics.v1.MetricsService",
+    protoc_gen_elixir_version: "0.10.0"
 
   rpc(
     :Export,

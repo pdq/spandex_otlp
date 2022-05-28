@@ -1,74 +1,45 @@
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigRequest do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          resource: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource.t() | nil,
-          last_known_fingerprint: binary
-        }
-  defstruct [:resource, :last_known_fingerprint]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:resource, 1, type: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource)
-  field(:last_known_fingerprint, 2, type: :bytes)
+  field(:last_known_fingerprint, 2, type: :bytes, json_name: "lastKnownFingerprint")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          match: {atom, any}
-        }
-  defstruct [:match]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:match, 0)
 
   field(:equals, 1, type: :string, oneof: 0)
-  field(:starts_with, 2, type: :string, oneof: 0)
+  field(:starts_with, 2, type: :string, json_name: "startsWith", oneof: 0)
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          exclusion_patterns: [
-            SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern.t()
-          ],
-          inclusion_patterns: [
-            SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern.t()
-          ],
-          period_sec: integer
-        }
-  defstruct [:exclusion_patterns, :inclusion_patterns, :period_sec]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:exclusion_patterns, 1,
     repeated: true,
     type:
-      SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern
+      SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern,
+    json_name: "exclusionPatterns"
   )
 
   field(:inclusion_patterns, 2,
     repeated: true,
     type:
-      SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern
+      SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.Pattern,
+    json_name: "inclusionPatterns"
   )
 
-  field(:period_sec, 3, type: :int32)
+  field(:period_sec, 3, type: :int32, json_name: "periodSec")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse do
   @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          fingerprint: binary,
-          schedules: [
-            SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule.t()
-          ],
-          suggested_wait_time_sec: integer
-        }
-  defstruct [:fingerprint, :schedules, :suggested_wait_time_sec]
+  use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:fingerprint, 1, type: :bytes)
 
@@ -77,12 +48,14 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigRespo
     type: SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfigResponse.Schedule
   )
 
-  field(:suggested_wait_time_sec, 3, type: :int32)
+  field(:suggested_wait_time_sec, 3, type: :int32, json_name: "suggestedWaitTimeSec")
 end
 
 defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.Experimental.MetricConfig.Service do
   @moduledoc false
-  use GRPC.Service, name: "opentelemetry.proto.metrics.experimental.MetricConfig"
+  use GRPC.Service,
+    name: "opentelemetry.proto.metrics.experimental.MetricConfig",
+    protoc_gen_elixir_version: "0.10.0"
 
   rpc(
     :GetMetricConfig,

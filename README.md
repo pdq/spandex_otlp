@@ -65,3 +65,9 @@ config :spandex_otlp, SpandexOTLP,
     "service.namespace" => "<Your Service Namespace>" # Required by Lightstep
   }
 ```
+
+## Regenerate Protos 
+
+```
+protoc  -I opentelemetry-proto --elixir_out=plugins=grpc:./lib/spandex_otlp opentelemetry-proto/**/*/*.proto 
+```
