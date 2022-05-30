@@ -6,6 +6,12 @@ defmodule SpandexOTLP.Adapter do
   @behaviour Spandex.Adapter
 
   @impl true
+  def span_id, do: random_binary(4)
+
+  @impl true
+  def trace_id, do: random_binary(16)
+
+  @impl true
   def default_sender, do: SpandexOTLP.Sender
 
   @impl true
@@ -20,15 +26,10 @@ defmodule SpandexOTLP.Adapter do
   @impl true
   def now, do: :os.system_time(:nano_seconds)
 
-  @impl true
-  def span_id, do: random_binary(64)
-
-  @impl true
-  def trace_id, do: random_binary(128)
-
-  defp random_binary(bits) do
-    1..div(bits, 8)
+  defp random_binary(bytes) do
+    1..bytes
     |> Enum.map(fn _ -> :rand.uniform(255) end)
     |> :binary.list_to_bin()
+    |> Base.encode16()
   end
 end

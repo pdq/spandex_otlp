@@ -36,7 +36,7 @@ defmodule SpandexOTLP.Conversion do
 
   def convert_span(span) do
     %SpandexOTLP.Opentelemetry.Proto.Trace.V1.Span{
-      trace_id: span.trace_id,
+      trace_id: Base.decode16!(span.trace_id),
       span_id: span.id,
       trace_state: "",
       parent_span_id: span.parent_id,
