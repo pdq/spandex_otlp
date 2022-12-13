@@ -4,8 +4,8 @@ defmodule SpandexOTLP.ConversionTest do
   use ExUnit.Case
 
   alias SpandexOTLP.Conversion
-  alias SpandexOTLP.Opentelemetry.Proto.Common.V1.{AnyValue, KeyValue}
-  alias SpandexOTLP.Opentelemetry.Proto.Trace.V1.Span
+  alias Opentelemetry.Proto.Common.V1.{AnyValue, KeyValue}
+  alias Opentelemetry.Proto.Trace.V1.Span
 
   describe "convert_span/1" do
     setup do

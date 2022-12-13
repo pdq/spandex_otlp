@@ -3,9 +3,9 @@ defmodule SpandexOTLP.Conversion do
 
   alias Spandex.Span
 
-  alias SpandexOTLP.Opentelemetry.Proto.Trace.V1.{InstrumentationLibrarySpans, ResourceSpans}
-  alias SpandexOTLP.Opentelemetry.Proto.Common.V1.{AnyValue, KeyValue}
-  alias SpandexOTLP.Opentelemetry.Proto.Trace.V1.Span, as: OTLPSpan
+  alias Opentelemetry.Proto.Trace.V1.{InstrumentationLibrarySpans, ResourceSpans}
+  alias Opentelemetry.Proto.Common.V1.{AnyValue, KeyValue}
+  alias Opentelemetry.Proto.Trace.V1.Span, as: OTLPSpan
 
   @resources Application.compile_env(:spandex_otlp, SpandexOTLP)[:resources] || []
 
@@ -35,11 +35,11 @@ defmodule SpandexOTLP.Conversion do
   end
 
   def convert_span(span) do
-    %SpandexOTLP.Opentelemetry.Proto.Trace.V1.Span{
-      trace_id: Base.decode16!(span.trace_id),
-      span_id: span.id,
+    %Opentelemetry.Proto.Trace.V1.Span{
+      trace_id: Base.decode16!(span.trace_id, case: :lower),
+      span_id: Base.decode16!(span.id, case: :lower),
       trace_state: "",
-      parent_span_id: span.parent_id,
+      parent_span_id: span.parent_id && Base.decode16!(span.parent_id, case: :lower),
       name: span.name,
       kind: :SPAN_KIND_INTERNAL,
       start_time_unix_nano: span.start,
@@ -55,7 +55,7 @@ defmodule SpandexOTLP.Conversion do
   end
 
   defp convert_status(%Span{error: nil}) do
-    %SpandexOTLP.Opentelemetry.Proto.Trace.V1.Status{
+    %Opentelemetry.Proto.Trace.V1.Status{
       deprecated_code: :DEPRECATED_STATUS_CODE_OK,
       message: nil,
       code: :STATUS_CODE_OK
@@ -63,7 +63,7 @@ defmodule SpandexOTLP.Conversion do
   end
 
   defp convert_status(%Span{error: error}) do
-    %SpandexOTLP.Opentelemetry.Proto.Trace.V1.Status{
+    %Opentelemetry.Proto.Trace.V1.Status{
       deprecated_code: :DEPRECATED_STATUS_CODE_UNAVAILABLE,
       message: error_message(error),
       code: :STATUS_CODE_ERROR
@@ -170,7 +170,7 @@ defmodule SpandexOTLP.Conversion do
   defp resource do
     config_resources = Enum.map(@resources, fn {k, v} -> key_value(k, v) end)
 
-    %SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource{
+    %Opentelemetry.Proto.Resource.V1.Resource{
       attributes:
         config_resources ++
           [

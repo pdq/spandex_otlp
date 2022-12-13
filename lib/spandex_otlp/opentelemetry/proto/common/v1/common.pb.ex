@@ -1,4 +1,4 @@
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue do
+defmodule Opentelemetry.Proto.Common.V1.AnyValue do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -10,13 +10,13 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue do
   field(:double_value, 4, type: :double, json_name: "doubleValue", oneof: 0)
 
   field(:array_value, 5,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.ArrayValue,
+    type: Opentelemetry.Proto.Common.V1.ArrayValue,
     json_name: "arrayValue",
     oneof: 0
   )
 
   field(:kvlist_value, 6,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValueList,
+    type: Opentelemetry.Proto.Common.V1.KeyValueList,
     json_name: "kvlistValue",
     oneof: 0
   )
@@ -24,29 +24,29 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue do
   field(:bytes_value, 7, type: :bytes, json_name: "bytesValue", oneof: 0)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.ArrayValue do
+defmodule Opentelemetry.Proto.Common.V1.ArrayValue do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:values, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue)
+  field(:values, 1, repeated: true, type: Opentelemetry.Proto.Common.V1.AnyValue)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValueList do
+defmodule Opentelemetry.Proto.Common.V1.KeyValueList do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:values, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
+  field(:values, 1, repeated: true, type: Opentelemetry.Proto.Common.V1.KeyValue)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue do
+defmodule Opentelemetry.Proto.Common.V1.KeyValue do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:key, 1, type: :string)
-  field(:value, 2, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue)
+  field(:value, 2, type: Opentelemetry.Proto.Common.V1.AnyValue)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue do
+defmodule Opentelemetry.Proto.Common.V1.StringKeyValue do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -54,7 +54,7 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue do
   field(:value, 2, type: :string)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary do
+defmodule Opentelemetry.Proto.Common.V1.InstrumentationLibrary do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 

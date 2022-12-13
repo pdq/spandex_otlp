@@ -6,7 +6,12 @@ defmodule SpandexOTLP.Adapter do
   @behaviour Spandex.Adapter
 
   @impl true
-  def span_id, do: random_binary(4)
+  def span_id do
+    10_000_000..99_999_999
+    |> Enum.random()
+    |> to_string()
+    |> Base.encode16(case: :lower)
+  end
 
   @impl true
   def trace_id, do: random_binary(16)
@@ -30,6 +35,6 @@ defmodule SpandexOTLP.Adapter do
     1..bytes
     |> Enum.map(fn _ -> :rand.uniform(255) end)
     |> :binary.list_to_bin()
-    |> Base.encode16()
+    |> Base.encode16(case: :lower)
   end
 end

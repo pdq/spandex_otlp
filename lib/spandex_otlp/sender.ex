@@ -9,9 +9,9 @@ defmodule SpandexOTLP.Sender do
 
   alias Spandex.Trace
   alias SpandexOTLP.Conversion
-  alias SpandexOTLP.Opentelemetry.Proto.Collector.Trace.V1.ExportTraceServiceRequest
-  alias SpandexOTLP.Opentelemetry.Proto.Collector.Trace.V1.TraceService
-  alias SpandexOTLP.Opentelemetry.Proto.Trace.V1.ResourceSpans
+  alias Opentelemetry.Proto.Collector.Trace.V1.ExportTraceServiceRequest
+  alias Opentelemetry.Proto.Collector.Trace.V1.TraceService
+  alias Opentelemetry.Proto.Trace.V1.ResourceSpans
 
   defp require_config_for(config, key) do
     if Map.has_key?(config, key) do

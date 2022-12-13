@@ -1,4 +1,4 @@
-defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.ConstantSampler.ConstantDecision do
+defmodule Opentelemetry.Proto.Trace.V1.ConstantSampler.ConstantDecision do
   @moduledoc false
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -7,26 +7,26 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.ConstantSampler.ConstantDecis
   field(:ALWAYS_PARENT, 2)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.TraceConfig do
+defmodule Opentelemetry.Proto.Trace.V1.TraceConfig do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:sampler, 0)
 
   field(:constant_sampler, 1,
-    type: SpandexOTLP.Opentelemetry.Proto.Trace.V1.ConstantSampler,
+    type: Opentelemetry.Proto.Trace.V1.ConstantSampler,
     json_name: "constantSampler",
     oneof: 0
   )
 
   field(:trace_id_ratio_based, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Trace.V1.TraceIdRatioBased,
+    type: Opentelemetry.Proto.Trace.V1.TraceIdRatioBased,
     json_name: "traceIdRatioBased",
     oneof: 0
   )
 
   field(:rate_limiting_sampler, 3,
-    type: SpandexOTLP.Opentelemetry.Proto.Trace.V1.RateLimitingSampler,
+    type: Opentelemetry.Proto.Trace.V1.RateLimitingSampler,
     json_name: "rateLimitingSampler",
     oneof: 0
   )
@@ -47,24 +47,24 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.TraceConfig do
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.ConstantSampler do
+defmodule Opentelemetry.Proto.Trace.V1.ConstantSampler do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:decision, 1,
-    type: SpandexOTLP.Opentelemetry.Proto.Trace.V1.ConstantSampler.ConstantDecision,
+    type: Opentelemetry.Proto.Trace.V1.ConstantSampler.ConstantDecision,
     enum: true
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.TraceIdRatioBased do
+defmodule Opentelemetry.Proto.Trace.V1.TraceIdRatioBased do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:samplingRatio, 1, type: :double)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Trace.V1.RateLimitingSampler do
+defmodule Opentelemetry.Proto.Trace.V1.RateLimitingSampler do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 

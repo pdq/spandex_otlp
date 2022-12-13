@@ -1,4 +1,4 @@
-defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.SeverityNumber do
+defmodule Opentelemetry.Proto.Logs.V1.SeverityNumber do
   @moduledoc false
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -29,7 +29,7 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.SeverityNumber do
   field(:SEVERITY_NUMBER_FATAL4, 24)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.LogRecordFlags do
+defmodule Opentelemetry.Proto.Logs.V1.LogRecordFlags do
   @moduledoc false
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -37,50 +37,50 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.LogRecordFlags do
   field(:LOG_RECORD_FLAG_TRACE_FLAGS_MASK, 255)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.ResourceLogs do
+defmodule Opentelemetry.Proto.Logs.V1.ResourceLogs do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:resource, 1, type: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource)
+  field(:resource, 1, type: Opentelemetry.Proto.Resource.V1.Resource)
 
   field(:instrumentation_library_logs, 2,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Logs.V1.InstrumentationLibraryLogs,
+    type: Opentelemetry.Proto.Logs.V1.InstrumentationLibraryLogs,
     json_name: "instrumentationLibraryLogs"
   )
 
   field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.InstrumentationLibraryLogs do
+defmodule Opentelemetry.Proto.Logs.V1.InstrumentationLibraryLogs do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:instrumentation_library, 1,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary,
+    type: Opentelemetry.Proto.Common.V1.InstrumentationLibrary,
     json_name: "instrumentationLibrary"
   )
 
-  field(:logs, 2, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Logs.V1.LogRecord)
+  field(:logs, 2, repeated: true, type: Opentelemetry.Proto.Logs.V1.LogRecord)
   field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Logs.V1.LogRecord do
+defmodule Opentelemetry.Proto.Logs.V1.LogRecord do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:time_unix_nano, 1, type: :fixed64, json_name: "timeUnixNano")
 
   field(:severity_number, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Logs.V1.SeverityNumber,
+    type: Opentelemetry.Proto.Logs.V1.SeverityNumber,
     json_name: "severityNumber",
     enum: true
   )
 
   field(:severity_text, 3, type: :string, json_name: "severityText")
   field(:name, 4, type: :string)
-  field(:body, 5, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.AnyValue)
-  field(:attributes, 6, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
+  field(:body, 5, type: Opentelemetry.Proto.Common.V1.AnyValue)
+  field(:attributes, 6, repeated: true, type: Opentelemetry.Proto.Common.V1.KeyValue)
   field(:dropped_attributes_count, 7, type: :uint32, json_name: "droppedAttributesCount")
   field(:flags, 8, type: :fixed32)
   field(:trace_id, 9, type: :bytes, json_name: "traceId")

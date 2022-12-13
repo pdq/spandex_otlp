@@ -1,4 +1,4 @@
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality do
+defmodule Opentelemetry.Proto.Metrics.V1.AggregationTemporality do
   @moduledoc false
   use Protobuf, enum: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -7,35 +7,35 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality do
   field(:AGGREGATION_TEMPORALITY_CUMULATIVE, 2)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.ResourceMetrics do
+defmodule Opentelemetry.Proto.Metrics.V1.ResourceMetrics do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:resource, 1, type: SpandexOTLP.Opentelemetry.Proto.Resource.V1.Resource)
+  field(:resource, 1, type: Opentelemetry.Proto.Resource.V1.Resource)
 
   field(:instrumentation_library_metrics, 2,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics,
+    type: Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics,
     json_name: "instrumentationLibraryMetrics"
   )
 
   field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics do
+defmodule Opentelemetry.Proto.Metrics.V1.InstrumentationLibraryMetrics do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:instrumentation_library, 1,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.InstrumentationLibrary,
+    type: Opentelemetry.Proto.Common.V1.InstrumentationLibrary,
     json_name: "instrumentationLibrary"
   )
 
-  field(:metrics, 2, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric)
+  field(:metrics, 2, repeated: true, type: Opentelemetry.Proto.Metrics.V1.Metric)
   field(:schema_url, 3, type: :string, json_name: "schemaUrl")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric do
+defmodule Opentelemetry.Proto.Metrics.V1.Metric do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -46,68 +46,68 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Metric do
   field(:unit, 3, type: :string)
 
   field(:int_gauge, 4,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntGauge,
+    type: Opentelemetry.Proto.Metrics.V1.IntGauge,
     json_name: "intGauge",
     oneof: 0,
     deprecated: true
   )
 
-  field(:gauge, 5, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Gauge, oneof: 0)
+  field(:gauge, 5, type: Opentelemetry.Proto.Metrics.V1.Gauge, oneof: 0)
 
   field(:int_sum, 6,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntSum,
+    type: Opentelemetry.Proto.Metrics.V1.IntSum,
     json_name: "intSum",
     oneof: 0,
     deprecated: true
   )
 
-  field(:sum, 7, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Sum, oneof: 0)
+  field(:sum, 7, type: Opentelemetry.Proto.Metrics.V1.Sum, oneof: 0)
 
   field(:int_histogram, 8,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogram,
+    type: Opentelemetry.Proto.Metrics.V1.IntHistogram,
     json_name: "intHistogram",
     oneof: 0,
     deprecated: true
   )
 
-  field(:histogram, 9, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Histogram, oneof: 0)
-  field(:summary, 11, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Summary, oneof: 0)
+  field(:histogram, 9, type: Opentelemetry.Proto.Metrics.V1.Histogram, oneof: 0)
+  field(:summary, 11, type: Opentelemetry.Proto.Metrics.V1.Summary, oneof: 0)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntGauge do
+defmodule Opentelemetry.Proto.Metrics.V1.IntGauge do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.IntDataPoint,
     json_name: "dataPoints"
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Gauge do
+defmodule Opentelemetry.Proto.Metrics.V1.Gauge do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
     json_name: "dataPoints"
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntSum do
+defmodule Opentelemetry.Proto.Metrics.V1.IntSum do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.IntDataPoint,
     json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    type: Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
     json_name: "aggregationTemporality",
     enum: true
   )
@@ -115,18 +115,18 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntSum do
   field(:is_monotonic, 3, type: :bool, json_name: "isMonotonic")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Sum do
+defmodule Opentelemetry.Proto.Metrics.V1.Sum do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.NumberDataPoint,
     json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    type: Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
     json_name: "aggregationTemporality",
     enum: true
   )
@@ -134,78 +134,73 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Sum do
   field(:is_monotonic, 3, type: :bool, json_name: "isMonotonic")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogram do
+defmodule Opentelemetry.Proto.Metrics.V1.IntHistogram do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint,
     json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    type: Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
     json_name: "aggregationTemporality",
     enum: true
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Histogram do
+defmodule Opentelemetry.Proto.Metrics.V1.Histogram do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.HistogramDataPoint,
     json_name: "dataPoints"
   )
 
   field(:aggregation_temporality, 2,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
+    type: Opentelemetry.Proto.Metrics.V1.AggregationTemporality,
     json_name: "aggregationTemporality",
     enum: true
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Summary do
+defmodule Opentelemetry.Proto.Metrics.V1.Summary do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:data_points, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint,
+    type: Opentelemetry.Proto.Metrics.V1.SummaryDataPoint,
     json_name: "dataPoints"
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntDataPoint do
+defmodule Opentelemetry.Proto.Metrics.V1.IntDataPoint do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:labels, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue)
-
+  field(:labels, 1, repeated: true, type: Opentelemetry.Proto.Common.V1.StringKeyValue)
   field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
   field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:value, 4, type: :sfixed64)
-
-  field(:exemplars, 5,
-    repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar
-  )
+  field(:exemplars, 5, repeated: true, type: Opentelemetry.Proto.Metrics.V1.IntExemplar)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint do
+defmodule Opentelemetry.Proto.Metrics.V1.NumberDataPoint do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   oneof(:value, 0)
 
-  field(:attributes, 7, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
+  field(:attributes, 7, repeated: true, type: Opentelemetry.Proto.Common.V1.KeyValue)
 
   field(:labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    type: Opentelemetry.Proto.Common.V1.StringKeyValue,
     deprecated: true
   )
 
@@ -213,37 +208,32 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.NumberDataPoint do
   field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:as_double, 4, type: :double, json_name: "asDouble", oneof: 0)
   field(:as_int, 6, type: :sfixed64, json_name: "asInt", oneof: 0)
-  field(:exemplars, 5, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar)
+  field(:exemplars, 5, repeated: true, type: Opentelemetry.Proto.Metrics.V1.Exemplar)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint do
+defmodule Opentelemetry.Proto.Metrics.V1.IntHistogramDataPoint do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:labels, 1, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue)
-
+  field(:labels, 1, repeated: true, type: Opentelemetry.Proto.Common.V1.StringKeyValue)
   field(:start_time_unix_nano, 2, type: :fixed64, json_name: "startTimeUnixNano")
   field(:time_unix_nano, 3, type: :fixed64, json_name: "timeUnixNano")
   field(:count, 4, type: :fixed64)
   field(:sum, 5, type: :sfixed64)
   field(:bucket_counts, 6, repeated: true, type: :fixed64, json_name: "bucketCounts")
   field(:explicit_bounds, 7, repeated: true, type: :double, json_name: "explicitBounds")
-
-  field(:exemplars, 8,
-    repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar
-  )
+  field(:exemplars, 8, repeated: true, type: Opentelemetry.Proto.Metrics.V1.IntExemplar)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint do
+defmodule Opentelemetry.Proto.Metrics.V1.HistogramDataPoint do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:attributes, 9, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
+  field(:attributes, 9, repeated: true, type: Opentelemetry.Proto.Common.V1.KeyValue)
 
   field(:labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    type: Opentelemetry.Proto.Common.V1.StringKeyValue,
     deprecated: true
   )
 
@@ -253,10 +243,10 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.HistogramDataPoint do
   field(:sum, 5, type: :double)
   field(:bucket_counts, 6, repeated: true, type: :fixed64, json_name: "bucketCounts")
   field(:explicit_bounds, 7, repeated: true, type: :double, json_name: "explicitBounds")
-  field(:exemplars, 8, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar)
+  field(:exemplars, 8, repeated: true, type: Opentelemetry.Proto.Metrics.V1.Exemplar)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile do
+defmodule Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -264,15 +254,15 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQua
   field(:value, 2, type: :double)
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint do
+defmodule Opentelemetry.Proto.Metrics.V1.SummaryDataPoint do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
-  field(:attributes, 7, repeated: true, type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue)
+  field(:attributes, 7, repeated: true, type: Opentelemetry.Proto.Common.V1.KeyValue)
 
   field(:labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    type: Opentelemetry.Proto.Common.V1.StringKeyValue,
     deprecated: true
   )
 
@@ -283,18 +273,18 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint do
 
   field(:quantile_values, 6,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile,
+    type: Opentelemetry.Proto.Metrics.V1.SummaryDataPoint.ValueAtQuantile,
     json_name: "quantileValues"
   )
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar do
+defmodule Opentelemetry.Proto.Metrics.V1.IntExemplar do
   @moduledoc false
   use Protobuf, deprecated: true, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
   field(:filtered_labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    type: Opentelemetry.Proto.Common.V1.StringKeyValue,
     json_name: "filteredLabels"
   )
 
@@ -304,7 +294,7 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.IntExemplar do
   field(:trace_id, 5, type: :bytes, json_name: "traceId")
 end
 
-defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar do
+defmodule Opentelemetry.Proto.Metrics.V1.Exemplar do
   @moduledoc false
   use Protobuf, protoc_gen_elixir_version: "0.10.0", syntax: :proto3
 
@@ -312,13 +302,13 @@ defmodule SpandexOTLP.Opentelemetry.Proto.Metrics.V1.Exemplar do
 
   field(:filtered_attributes, 7,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.KeyValue,
+    type: Opentelemetry.Proto.Common.V1.KeyValue,
     json_name: "filteredAttributes"
   )
 
   field(:filtered_labels, 1,
     repeated: true,
-    type: SpandexOTLP.Opentelemetry.Proto.Common.V1.StringKeyValue,
+    type: Opentelemetry.Proto.Common.V1.StringKeyValue,
     json_name: "filteredLabels",
     deprecated: true
   )
