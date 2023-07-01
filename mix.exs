@@ -57,13 +57,13 @@ defmodule SpandexOTLP.MixProject do
 
   defp deps do
     [
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:credo, ">= 0.0.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.24", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.14", only: [:test]},
-      {:grpc, "~> 0.5"},
-      {:protobuf, "~> 0.11"},
+      {:excoveralls, ">= 0.0.0", only: [:test]},
+      {:grpc, "~> 0.6"},
+      {:protobuf, "~> 0.12"},
       {:spandex, "~> 3.0"},
-      {:telemetry, "~> 1.1"}
+      {:telemetry, "~> 1.0"}
     ]
   end
 end
