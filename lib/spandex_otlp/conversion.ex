@@ -7,8 +7,6 @@ defmodule SpandexOTLP.Conversion do
   alias Opentelemetry.Proto.Common.V1.{AnyValue, KeyValue}
   alias Opentelemetry.Proto.Trace.V1.Span, as: OTLPSpan
 
-  @resources Application.compile_env(:spandex_otlp, SpandexOTLP)[:resources] || []
-
   @doc false
   @spec traces_to_resource_spans([Spandex.Trace.t()]) :: [ResourceSpans.t()]
   def traces_to_resource_spans(spandex_traces) do
@@ -168,7 +166,8 @@ defmodule SpandexOTLP.Conversion do
   end
 
   defp resource do
-    config_resources = Enum.map(@resources, fn {k, v} -> key_value(k, v) end)
+    resources = Application.compile_env(:spandex_otlp, SpandexOTLP)[:resources] || []
+    config_resources = Enum.map(resources, fn {k, v} -> key_value(k, v) end)
 
     %Opentelemetry.Proto.Resource.V1.Resource{
       attributes:
