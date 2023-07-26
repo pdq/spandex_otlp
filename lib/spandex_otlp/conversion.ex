@@ -166,7 +166,7 @@ defmodule SpandexOTLP.Conversion do
   end
 
   defp resource do
-    resources = Application.compile_env(:spandex_otlp, SpandexOTLP)[:resources] || []
+    resources = Application.get_env(:spandex_otlp, SpandexOTLP)[:resources] || []
     config_resources = Enum.map(resources, fn {k, v} -> key_value(k, v) end)
 
     %Opentelemetry.Proto.Resource.V1.Resource{
